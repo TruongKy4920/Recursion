@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+int n,n2; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+
+int LuyThua(int i,int x){
+   if(i>1){
+        return x*LuyThua(i-1,x);
+   }
+   else return x;
+}
+
+
+
+void solution(){
+    output<<LuyThua(n,n2);
+}
+
+
+int main(){
+    std::string line;
+    input>>n>>n2;
+    solution();
+}

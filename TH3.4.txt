@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+float n; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+ 
+string th3_4(int n){
+    if(n>=2){
+        if(n%2==0) {
+            output<<to_string(n)+"/2 = "+to_string(n/2)+"\n";
+            return th3_4(n/2);
+        }
+        else {
+            output<<"3*"+to_string(n)+"+ 1 = "+ to_string(3*n+1)+"\n";  
+            return th3_4(n*3+1);;
+        }
+    }
+    else return "";
+
+}
+
+
+
+void solution(){
+    th3_4(n);
+}
+
+
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}

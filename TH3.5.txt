@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+int n,n2; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+
+string th3_5(int a,int b){
+    int r= a % b;
+    if(r>0) {
+        output<<to_string(a)<<" / "<<to_string(b)<<" = "<<to_string(a/b)
+        <<" remain "<<to_string(a%b)<<"\n";
+        return th3_5(b,r);
+    }
+    else {
+        output<<to_string(a)<<" / "<<to_string(b)<<" = "<<to_string(a/b)
+        <<" remain "<<to_string(a%b)<<"\n"<<"GCD: "+ to_string(b);
+        return"";
+    }
+
+}
+
+
+
+void solution(){
+    th3_5(n,n2);
+}
+
+
+int main(){
+    std::string line;
+    input>>n>>n2;
+    solution();
+}

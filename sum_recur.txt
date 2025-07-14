@@ -1,0 +1,46 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+#define MAX 100
+
+int n; // Giá trị cho trước
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+
+// int sum_recur(int i) {
+//     if(i!=n) return i + sum_recur(i+1);
+    
+//     else  return n;
+
+    
+// }
+ //     1+ sum (2)--
+    //                 I
+    //                 v
+    //                 2+ sum(3)--
+    //                            I
+    //                            v
+    //                             3+ sum(4)--
+    //                                       I
+    //                                       v
+    //                                       4+ sum(5) 
+    // Gia su 5 la so cuoi cua day (n=5) => i==n => sum(5) se return 5 aka n
+
+int sum_recur_rever(int i){
+    if(i==0) return 0;
+    
+    else return i + sum_recur_rever(i-1);
+}
+
+void solution(){
+   // output<<sum_recur(1);
+   output<<sum_recur_rever(n);
+}
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}

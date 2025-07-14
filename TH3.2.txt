@@ -1,0 +1,36 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+float n; // Giá trị cho trước
+float x;
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+ 
+float th3_2(float n){
+    if(n!=1) return (n*n + 3*(th3_2(n-1))+7 )/ (n+1);
+    else return 1;
+}
+float th3_2_multi(float n){
+    if(n!=1) return th3_2(n)*th3_2_multi(n-1);
+    else    return 1;
+
+}
+
+float tb_nhan(float n){
+    return pow(th3_2_multi(n),1.0/n);
+}
+
+void solution(){
+    output << std::fixed << std::setprecision(4) << th3_2(n) << "\n";
+    output << std::fixed << std::setprecision(4) << tb_nhan(n) << "\n";
+}
+
+
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}
