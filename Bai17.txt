@@ -10,21 +10,21 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-float Bai21_dequy_minhkhang(float x,int i){
-    if(i>0) {
-        return  (x + i) * Bai21_dequy_minhkhang(x,i-1);
+float Bai17_dequy_minhkhang(float x){
+    if(x>0) {
+        return 1/(x*(x+1)*(x+2)*(x+3)) + Bai17_dequy_minhkhang(x-1);
         
     }
-    else return x;
+    else return 0;
 }
 
 void solution(){
-    output<<Bai21_dequy_minhkhang(n,n2);
+    output<<Bai17_dequy_minhkhang(n);
 }
 
 
 int main(){
     std::string line;
-    input>>n>>n2;
+    input>>n;
     solution();
 }
