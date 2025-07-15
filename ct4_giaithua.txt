@@ -10,17 +10,14 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-int LuyThua(int i,int x){
-   if(i>1){
-        return x*LuyThua(i-1,x);
-   }
-   else return x;
+int Giai_thua(int i){
+    if(i>1) return i*Giai_thua(i-1);
+    else return 1;
 }
 
 
-
 void solution(){
-    output<<LuyThua(n,n2);
+    output<<Giai_thua(n);
 }
 
 
