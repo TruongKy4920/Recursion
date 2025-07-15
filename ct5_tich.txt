@@ -9,13 +9,19 @@ using namespace std;
 
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
-int tong_cacsobinhphuong(int x){
-    if(x>1) return pow(x,2)+tong_cacsobinhphuong(x-1);
-    else return 1;
+// tu bai toan lon nhu 1x2x3x4x5 thi ta phan tach no thanh bai toan
+// nhan giua 2 so hang 1x tich(2-5)
+//                         2x tich(3-5)
+//                             ...4x tich(5) -> i==n tra ve 5
+int tich_recur(int x){
+    if(x!=1) return x*tich_recur(x-1);
+    else return 1;      
+
 }
 
+
 void solution(){
-    output<<tong_cacsobinhphuong(n);
+    output<<tich_recur(n);
 }
 
 
