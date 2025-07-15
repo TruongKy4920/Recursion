@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+double n; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+
+double Bai33(double x){
+    if(x>1) return ( pow(Bai33(x-1),2)+2 ) / ( 2*Bai33(x-1) );
+    else return 2;
+
+}
+void solution(){
+    output<<Bai33(n);
+}
+
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}
