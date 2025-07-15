@@ -9,17 +9,16 @@ using namespace std;
 
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
-
-float tong_phanso2(float x){
+float tong_phanso_2xplus1_mausotangdan(float x){
     if(x>0) {
-        return x/(x+1) + tong_phanso2(x-1);
-        
+        float mau=2*x + 1;
+        return 1/mau+tong_phanso_2xplus1_mausotangdan(x-1);
     }
-    else return 0;
+    else return 1;
 }
 
 void solution(){
-    output<<tong_phanso2(n);
+    output<<tong_phanso_2xplus1_mausotangdan(n);
 }
 
 
