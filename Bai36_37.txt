@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+int n; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+
+int Bai36_37(int n){
+    // if(n>0) return 1 + Bai36_37(n/10); //dem so luong chu so cua 1 so nguyen
+    // else return 0;
+    //  if(n>0) {
+    //     if(n%2==0)return 1 + Bai36_37(n/10); //dem so luong so chan cua 1 so nguyen
+    //     else return Bai36_37(n/10);
+    //  }
+    //  else return 0;
+
+      if(n>0) {
+        if(n%2!=0)return 1 + Bai36_37(n/10); //dem so luong so chan cua 1 so nguyen
+        else return Bai36_37(n/10);
+     }
+     else return 0;
+
+    
+    
+}
+
+void solution(){
+    
+    output<<Bai36_37(n);
+}
+
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}

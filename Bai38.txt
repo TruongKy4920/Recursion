@@ -9,17 +9,23 @@ using namespace std;
 
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
-
-int Bai39(int n){
-    if(n>1) return Bai39(n/10);
-    else return n;
+int mins=9;
+int Bai38(int n){
+    if(n>0){
+        if(mins > n%10) {
+            mins=n%10;
+            return Bai38(n/10);
+        }
+        else return Bai38(n/10);
+    }
+    else return mins;
 }
     
     
 
 
 void solution(){
-    output<<Bai39(n);
+    output<<Bai38(n);
     
 }
 
