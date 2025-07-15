@@ -10,18 +10,18 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-float Bai25_dequy_minhkhang(int i){
+float Bai24_dequy_minhkhang(int i){
     if(i!=0){
         int x=i%10;
-        if(x%2==0) return  Bai25_dequy_minhkhang(i/10); 
-        else return  abs(i%10) * Bai25_dequy_minhkhang(i/10);
+        if(x%2==0) return abs(i%10) + Bai24_dequy_minhkhang(i/10);
+        else return Bai24_dequy_minhkhang(i/10);
     } 
     
-    else return 1;
+    else return 0;
 }
 
 void solution(){
-    output<<Bai25_dequy_minhkhang(n);
+    output<<Bai24_dequy_minhkhang(n);
 }
 
 
