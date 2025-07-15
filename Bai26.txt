@@ -10,13 +10,15 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-float Bai29(float x){
-    if(x>0) return 1/(1+Bai29(x-1));
-    else return 1;
+float Bai26_dequy_minhkhang(float i){
+    if (i>0) return sqrt(i + Bai26_dequy_minhkhang(i-1));
+    else return 0;
 }
+
 void solution(){
-    output<<Bai29(n);
+    output<<Bai26_dequy_minhkhang(n);
 }
+
 
 int main(){
     std::string line;

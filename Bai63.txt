@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+float n; // Giá trị cho trước
+using namespace std;
+
+std::ifstream input("input.txt");
+std::ofstream output("output.txt");
+// thap_hanoi(3, A, B, C)
+// ├── thap_hanoi(2, A, C, B) -> a,b,c 
+// │   ├── thap_hanoi(1, A, B, C) -> a,c,b
+// │   └── Di chuyển đĩa 2 từ A → B
+// │   └── thap_hanoi(1, C, A, B) -> b,a,c -> DC đĩa 1 từ C->B;
+// ├── Di chuyển đĩa 3 từ A → C
+// └── thap_hanoi(2, B, A, C)
+//     ├── thap_hanoi(1, B, C, A)
+//     └── Di chuyển đĩa 2 từ B → C
+//     └── thap_hanoi(1, A, B, C)
+void thap_hanoi(int n, char a,char b,char c){
+    if(n==1) {
+        output<<"Di chuyen dia "<<n<<" tu cot "<<a<<" sang "<<c<<"\n";
+        return;
+    }
+    else{
+        thap_hanoi(n-1,a,c,b);    //A,C,B 
+        output<<"Di chuyen dia "<<n<<" tu cot "<<a<<" sang "<<c<<"\n";
+        thap_hanoi(n-1,b,a,c); //B,A,C
+    }
+}
+
+void solution(){
+    thap_hanoi(n,'A','B','C');
+}
+
+
+int main(){
+    std::string line;
+    input>>n;
+    solution();
+}
