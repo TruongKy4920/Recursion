@@ -10,18 +10,17 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-
-int Bai40(int n){
-   if(n%2!=0) return n;
-   else return Bai40(n/2);
+int Bai39(int n){
+    if(n>9) return Bai39(n/10);
+    else return n;
 }
-   
+    
     
 
 
 void solution(){
-    output<<Bai40(n);
-   
+    output<<Bai39(n);
+    
 }
 
 int main(){
