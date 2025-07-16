@@ -10,26 +10,27 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-int Bai43_44(int n){
-    //43
-    // if(abs(n)<=9) return 1;
-    // int a1= n%10;
-    // int a2=(n/10)%10;
-    // if(a1 < a2) return 0;
-    // else return Bai43_44(n/10);
-    //44
-    if(abs(n)<=9) return 1;
-    int a1= n%10;
-    int a2=(n/10)%10;
-    if(a1 > a2) return 0;
-    else return Bai43_44(n/10);
+
+int Bai42(int n){
+    //so toan le
+//     if(n>0) {
+//         if(n%2!=0) return Bai41(n/10); //so toan chan
+//         else return 0; 
+//    }
+//    else return 1;
+
+   if(n>0) {
+        if(n%2==0) return Bai42(n/10); //so toan chan
+        else return 0; 
+   }
+   else return 1;
 }
    
     
 
 
 void solution(){
-    output<<Bai43_44(n);
+    output<<Bai42(n);
    
 }
 

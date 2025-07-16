@@ -9,7 +9,7 @@ using namespace std;
 
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
-
+//Tim chữ số đầu
 int Bai39(int n){
     if(n>9) return Bai39(n/10);
     else return n;
