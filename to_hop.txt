@@ -12,30 +12,26 @@ std::ofstream output("output.txt");
 
 int n,k;
 int x[MAX];
-bool mark[MAX];
 void xuat(){
-    for(int i = 1;i<=n;i++){
+    for(int i = 1;i<=k;i++){
         output<<x[i];
     }
     output<<"\n";
 }
-void hoan_vi(int i){
-    for(int v=1;v<=n;v++){
-        if(mark[v]==false){
+void to_hop(int i){
+    for(int v=x[i-1]+1;v<=n-k+i;v++){
+        if(true){
             x[i]=v;
-            mark[v]=true;
-            if(i==n){
+            if(i==k){
                 xuat();
             }
-            else hoan_vi(i+1);
-            mark[v]=false; // ← backtrack step happens here
-                            //sau khi goi de quy xong thi x[2] unmark cai mark[v(2)] de su
+            else to_hop(i+1);
         }
 
     }
 }
 void solution(){
-   hoan_vi(1);
+   to_hop(1);
 }
 
 int main(){
