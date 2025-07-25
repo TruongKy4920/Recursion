@@ -12,55 +12,41 @@ std::ofstream output("output.txt");
 
 int n,k;
 int x[MAX];
-int mark[MAX];
-string dict[MAX];
-void xuat_dict(){
-    for(int i = 1;i<=k;i++){
-        output<<dict[x[i]];
+int mark_cot[MAX];
+int mark_cheo_chinh[MAX];
+int mark_cheo_phu[MAX];
+void xuat(){
+    for(int i = 1;i<=n;i++){
+        output<<x[i];
     }
     output<<"\n";
 }
-void input_dict(){
-     for(int i = 1;i<=k;i++){
-        dict[i]=to_string(x[i]);
-    }
+void set_mark(int i,int j,bool value){
+    mark_cheo_chinh[i-j+n]=mark_cot[j]= mark_cheo_phu[i+j]=value;
 }
-void hoan_vi(int i){
-    for(int v=1;v<=k;v++){
-        if(mark[v]==false){
-            x[i]=v;
-            mark[v]=true;
-            if(i==k){
-               xuat_dict();
-            }
-            else hoan_vi(i+1);
-            mark[v]=false; // ← backtrack step happens here
-                            //sau khi goi de quy xong thi x[2] unmark cai mark[v(2)] de su
-        }
-
-    }
-}
-
-void to_hop(int i){
-    for(int v=x[i-1]+1;v<=n-k+i;v++){
-        if(true){
-            x[i]=v;
-            if(i==k){
-                input_dict();
-                hoan_vi(1);
-            }
-            else to_hop(i+1);
-        }
-
+void n_queen(int i){
+    for(int j=1;j<=n;j++){
+        if(mark_cot[j]==false &&
+             mark_cheo_chinh[i-j+n]==false && // +n để tịnh tiến giá trị của 
+            mark_cheo_phu[i+j]==false) //đường chéo chính thành số dương để lưu bằng mảng array
+            {
+                x[i]=j;
+                set_mark(i,j,true);
+                if(i==n) xuat();
+                else{
+                    n_queen(i+1);
+                }
+                set_mark(i,j,false);
+             }
     }
 }
 void solution(){
-   to_hop(1);
+    n_queen(1);
 }
 
 int main(){
     std::string line;
-      input>>n>>k;
+      input>>n;
       solution();
     // solution();
 }
