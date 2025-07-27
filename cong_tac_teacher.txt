@@ -5,6 +5,7 @@
 
 #define MAX 100
 std::ifstream input("input.txt");
+std::ofstream output("output.txt"); // 🔁 Replace cout with output
 
 int x[MAX];
 int count = 0;
@@ -18,29 +19,24 @@ void print_result(int n, int m, bool upper_first) {
     
     count++;
     if(upper_first){
-        for (int i = 1; i <= n; i++) std::cout << char(x[i]) << " ";
-        //std::cout << "| ";
-        for(int i = 1; i <= m; i++) std::cout << "C ";
+        for (int i = 1; i <= n; i++) output << char(x[i]) << " ";
+        for(int i = 1; i <= m; i++) output << "C ";
     }
     else {
-        for(int i = 1; i <= m; i++) std::cout << "C ";
-        //std::cout << "| ";
-        for (int i = 1; i <= n; i++) std::cout << char(x[i]) << " ";
+        for(int i = 1; i <= m; i++) output << "C ";
+        for (int i = 1; i <= n; i++) output << char(x[i]) << " ";
     }
-    std::cout << "\n";
+    output << "\n";
 }
-
 
 void resolve(int i, int n, int m, bool upper_first) {
     for(int v : {'C', 'O'}) {
-        if(true) {
-            x[i] = v;
-            if ( i == n) {
-                print_result(n, m, upper_first);
-            }
-            else {
-                resolve(i+1, n, m, upper_first);
-            }
+        x[i] = v;
+        if (i == n) {
+            print_result(n, m, upper_first);
+        }
+        else {
+            resolve(i + 1, n, m, upper_first);
         }
     }
 }
@@ -49,11 +45,11 @@ int main() {
     int n, m;
     input >> n >> m;
     
-    for(int i = 1; i <= m+n; i++) std::cout << "C ";
-    std::cout << "\n";
+    for(int i = 1; i <= m + n; i++) output << "C ";
+    output << "\n";
     
-    resolve(1, n, m, true); //std::cout << "\n";
-    resolve(1, m, n, false); //std::cout << "\n";
+    resolve(1, n, m, true);
+    resolve(1, m, n, false);
     
-    std::cout << count+1;
+    output << count + 1;
 }

@@ -12,45 +12,38 @@ std::ofstream output("output.txt");
 
 int n,m;
 int x[MAX];
-
-
-void xuat(int tren, int duoi, bool upper_first){
-    bool have_open=false;
-     for(int i=1;i<=tren;i++){
+void xuat(int xet,int koxet,bool upper_first){
+    bool have_open=false; //mac dinh cac cong tac dang dong
+    for(int i=1;i<= xet;i++){
         if(x[i]=='O') have_open=true;
-     }
-     if(!have_open) return; //có thể ghi if ( have_open == false)
+    }
+    if(!have_open) return;
 
-     if(upper_first){
-        for(int i=1;i<=n;i++)  output<<char(x[i])<<" ";            
-        for(int i=1;i<=m;i++)  output<<"C ";
-        output<<"\n";
-     }
-     else{
-        for(int i=1;i<=m;i++) output<<char(x[i])<<" ";
-        for(int i=1;i<=n;i++) output<<"C ";
-        output<<"\n";
-     }
+    if(upper_first){
+        for(int i=1;i<=xet;i++) output<<char(x[i])<<" ";
+        for(int i=1;i<=koxet;i++) output<<"C ";
+    }
+    else {
+        for(int i=1;i<=koxet;i++) output<<char(x[i])<<" ";
+        for(int i=1;i<=xet;i++) output<<"C ";
+    }
+    output<<"\n";
+ }
+    
 
-}
-void cong_tacdien(int i,int tren,int duoi,bool upper_first){
-    for(int v : {'C', 'O'}){
+void cong_tac(int i,int xet, int koxet,bool upper_first){
+    for(int v:{'C','O'}){
         if(true){
-            x[i]=v;
-            if(i==tren) {
-                xuat(tren,duoi,upper_first);               
-            }
-            else cong_tacdien(i+1,tren,duoi,upper_first);
+            if(i==xet) xuat(xet,koxet,upper_first);
+            else cong_tac(i+1,xet,koxet,upper_first);
         }
     }
 }
 
 
 void solution(){
-    output<<"dong N"<<"\n";
-    cong_tacdien(1,n,m,true);
-    output<<"dong M"<<"\n";
-    cong_tacdien(1,m,n,false);
+    cong_tac(1,n,m,true);
+    cong_tac(1,m,n,false);
 }
 
 int main(){

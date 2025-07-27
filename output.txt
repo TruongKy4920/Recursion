@@ -1,1 +1,7 @@
 C C C 
+dong N 
+O C C 
+dong M 
+C C O 
+C O C 
+C O O 
