@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+#define MAX 100
+std::ifstream input("input.txt");
+
+int x[MAX];
+int count = 0;
+
+void print_result(int n, int m, bool upper_first) {
+    bool have_open = false;
+    for(int i = 1; i <= n; i++) {
+        if(x[i] == 'O') have_open = true;
+    }
+    if(!have_open) return;
+    
+    count++;
+    if(upper_first){
+        for (int i = 1; i <= n; i++) std::cout << char(x[i]) << " ";
+        //std::cout << "| ";
+        for(int i = 1; i <= m; i++) std::cout << "C ";
+    }
+    else {
+        for(int i = 1; i <= m; i++) std::cout << "C ";
+        //std::cout << "| ";
+        for (int i = 1; i <= n; i++) std::cout << char(x[i]) << " ";
+    }
+    std::cout << "\n";
+}
+
+
+void resolve(int i, int n, int m, bool upper_first) {
+    for(int v : {'C', 'O'}) {
+        if(true) {
+            x[i] = v;
+            if ( i == n) {
+                print_result(n, m, upper_first);
+            }
+            else {
+                resolve(i+1, n, m, upper_first);
+            }
+        }
+    }
+}
+
+int main() {
+    int n, m;
+    input >> n >> m;
+    
+    for(int i = 1; i <= m+n; i++) std::cout << "C ";
+    std::cout << "\n";
+    
+    resolve(1, n, m, true); //std::cout << "\n";
+    resolve(1, m, n, false); //std::cout << "\n";
+    
+    std::cout << count+1;
+}

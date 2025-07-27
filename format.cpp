@@ -10,47 +10,49 @@ using namespace std;
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
 
-int n;
+int n,m;
 int x[MAX];
-int dict[MAX];
-void xuat(){
-    int sum1,sum2;
-    sum1=sum2=0;
-    for(int i =1;i<=n;i++){
-         if(x[i]==1) sum1+=dict[i];
-         else if(x[i]==0) sum2+=dict[i];
+void xuat(int xet,int koxet,bool upper_first){
+    bool have_open=false; //mac dinh cac cong tac dang dong
+    for(int i=1;i<= xet;i++){
+        if(x[i]=='O') have_open=true;
     }
-    if(sum1==sum2){
-        for(int i =1;i<=n;i++){
-            if(x[i]==0) output<<"A ";
-            else output<<"B ";
-        }
-        output<<"\n";
+    if(!have_open) return;
+
+    if(upper_first){
+        for(int i=1;i<=xet;i++) output<<char(x[i])<<" ";
+        for(int i=1;i<=koxet;i++) output<<"C ";
     }
-}
-void chia_tien(int i){
-    for(int v=0;v<=1;v++){
+    else {
+        for(int i=1;i<=koxet;i++) output<<char(x[i])<<" ";
+        for(int i=1;i<=xet;i++) output<<"C ";
+    }
+    output<<"\n";
+ }
+    
+
+void cong_tac(int i,int xet, int koxet,bool upper_first){
+    for(int v:{'C','O'}){
         if(true){
-            x[i]=v;
-            if(i==n) {
-                xuat();
-            }
-            else chia_tien(i+1);
+            if(i==xet) xuat(xet,koxet,upper_first);
+            else cong_tac(i+1,xet,koxet,upper_first);
         }
     }
 }
 
 
 void solution(){
-    chia_tien(1);
+    cong_tac(1,n,m,true);
+    cong_tac(1,m,n,false);
 }
 
 int main(){
     std::string line;
-      input>>n;
-      for(int i=1;i<=n;i++){
-        cin>>dict[i];
+      input>>n>>m;
+      for(int i=1;i<=m+n;i++){
+        output<<"C ";
       }
+      output<<"\n";
       solution();
     // solution();
 }
