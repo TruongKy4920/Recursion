@@ -24,8 +24,8 @@ void xuat(int xet,int koxet,bool upper_first){
         for(int i=1;i<=koxet;i++) output<<"C ";
     }
     else {
-        for(int i=1;i<=koxet;i++) output<<char(x[i])<<" ";
-        for(int i=1;i<=xet;i++) output<<"C ";
+        for(int i=1;i<=koxet;i++) output<<"C ";
+        for(int i=1;i<=xet;i++) output<<char(x[i])<<" ";
     }
     output<<"\n";
  }
@@ -34,6 +34,7 @@ void xuat(int xet,int koxet,bool upper_first){
 void cong_tac(int i,int xet, int koxet,bool upper_first){
     for(int v:{'C','O'}){
         if(true){
+            x[i]= v;
             if(i==xet) xuat(xet,koxet,upper_first);
             else cong_tac(i+1,xet,koxet,upper_first);
         }
@@ -42,7 +43,9 @@ void cong_tac(int i,int xet, int koxet,bool upper_first){
 
 
 void solution(){
+    output<<"dong N \n";
     cong_tac(1,n,m,true);
+    output<<"dong M \n";
     cong_tac(1,m,n,false);
 }
 
