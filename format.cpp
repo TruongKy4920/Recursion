@@ -9,22 +9,31 @@ using namespace std;
 
 std::ifstream input("input.txt");
 std::ofstream output("output.txt");
-int n;
+int n,x;
 int a[MAX];
 
 
 int main(){
     std::string line;
-      input>>n;
-      int start=0;
-      int end= (n-1);
-
-      for(int i=start;i<=end;i++){
-        int mid=(start+end)/2;
-        if(start<=end){
-          
-
-        }
+    input>>n>>x;
+      for(int i=0;i<n;i++){
+        input>>a[i];
       }
+      int start=0;
+      int end= n-1;
+
+      for(;start<=end;){
+        int mid=(start+end)/2;   
+        
+        if(a[mid]==x)  output<<a[mid];
+    
+
+        if(x> a[mid])
+          start = mid+1;         
+        else          
+          end = mid-1;       
+        }
+      
+      
       
 }
